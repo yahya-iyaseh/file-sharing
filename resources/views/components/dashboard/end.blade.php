@@ -1,5 +1,4 @@
-
-  </main>
+</main>
 <!-- include libraries(jQuery, bootstrap) -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -14,9 +13,9 @@
 <script src="{{ asset('dash/assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
 <script src="{{ asset('dash/assets/js/plugins/chartjs.min.js') }}"></script>
 <script>
-    $(document).ready(function() {
-  $('#description').summernote();
-});
+  $(document).ready(function() {
+    $('#description').summernote();
+  });
 </script>
 <script>
   var ctx = document.getElementById("chart-bars").getContext("2d");
@@ -282,18 +281,16 @@
 <script>
   function clickOnMe() {
     let image = document.getElementById('clickDiv')
-    let random = Math.floor(Math.random() * 3) + 1
-          console.log(random)
+    // let random = Math.floor(Math.random() * 2) + 1
+    // console.log(random)
 
-    if (random == 1) {
-      image.classList.remove('d-none')
-      setInterval(function() {
-        image.classList.add('d-none')
-      }, 3350)
-
-    }
-
+    // if (random == 1) {
+    image.classList.remove('d-none')
+    setInterval(function() {
+      image.classList.add('d-none')
+    }, 3350)
   }
+  //   }
 </script>
 </body>
 

@@ -34,7 +34,6 @@
       align-items: center;
       top: 0;
       left: 0;
-
     }
 
     #clickImage {
@@ -62,8 +61,8 @@
 
     main hr, hr.d-md-none {
       background-color: inherit;
-      width: 3%;
-      border-top: 4px dotted #f52e77;
+      width: 2%;
+      border-top: 6px dotted #f52e77;
       margin: 0 auto;
       opacity: 1;
     }

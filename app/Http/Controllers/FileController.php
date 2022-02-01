@@ -24,7 +24,7 @@ class FileController extends Controller
     {
         $user = \Auth::user();
 
-        return view('file.index', ['files' => $user->files]);
+        return view('file.index', ['files' => $user->files()->latest()->paginate(8)]);
     }
 
     /**
@@ -50,9 +50,9 @@ class FileController extends Controller
         $request->validate($this->rules($request->all()));
         $data = $request->all();
         $data['file'] = $request->file('file')->store('local/files');
-        if($data['access']){
+        if ($data['access']) {
             $data['access'] = true;
-        }else{
+        } else {
             $data['access'] = false;
         }
         $data['user_id'] = \Auth::id();
@@ -95,7 +95,9 @@ class FileController extends Controller
      */
     public function update(Request $request, File $file)
     {
-        $data =  $request->validate($this->rules($request->all()));
+        // dd($request->all());
+          $request->validate($this->rules($request->all()));
+        $data = $request->all();
         $new  = false;
         if ($request->hasFile('file')) {
             if ($request->file('file')->isValid()) {
@@ -105,8 +107,13 @@ class FileController extends Controller
         }
         if ($new) {
             \Storage::disk('local')->delete('files', $file->file);
+            $data['file'] = $newImage;
         }
-        $data['file'] = $newImage;
+        if(isset($request->access)){
+            $data['access'] = true;
+        }else{
+            $data['access'] = false;
+        }
 
         $file->update($data);
         return  redirect()->route('file.index')->with(['success' => 'File Updated Successfully']);;

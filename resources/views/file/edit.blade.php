@@ -7,7 +7,15 @@
 
     {{-- Main Content --}}
     <x-dashboard.main >
+        <div class="container-fluid py-4">
+            <form action="{{ route('file.update', $file->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
 
+                <x-dashboard._form title="Update" :file="$file" :accessType="$accessType" />
+
+            </form>
+        </div>
     </x-dashboard.main>
  {{-- Footer --}}
 {{-- <x-dashboard.footer /> --}}

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\File;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
@@ -32,7 +34,8 @@ class FileController extends Controller
      */
     public function create()
     {
-        return view('file.create', ['accessType' =>  File::accessType()]);
+        $file  = new File;
+        return view('file.create', ['accessType' =>  File::accessType(), 'file' => $file]);
     }
 
     /**
@@ -43,13 +46,17 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-       $data =  $request->validate($this->rules($request->all()));
-        if($request->hasFile('file')){
-            if($request->file('file')->isValid()){
-                $data['file'] = \Storage::disk('local')->put('files', $request->get('file'));
-            }
+
+        $request->validate($this->rules($request->all()));
+        $data = $request->all();
+        $data['file'] = $request->file('file')->store('local/files');
+        if($data['access']){
+            $data['access'] = true;
+        }else{
+            $data['access'] = false;
         }
-        $data['user_id'] = \Auth::user()->id;
+        $data['user_id'] = \Auth::id();
+        $data['unique'] = Str::uuid();
         File::create($data);
         return redirect()->route('file.index')->with(['success' => 'The File Was Uploded']);
     }
@@ -73,7 +80,7 @@ class FileController extends Controller
      */
     public function edit(File $file)
     {
-        return view('file.edit',[
+        return view('file.edit', [
             'file' => $file,
             'accessType' => File::accessType(),
         ]);
@@ -88,22 +95,21 @@ class FileController extends Controller
      */
     public function update(Request $request, File $file)
     {
-      $data =  $request->validate($this->rules($request->all()));
-      $new  = false;
-      if($request->hasFile('file')){
-          if($request->file('file')->isValid()){
-            $newImage = \Storage::disk('local')->put('files', $request->file);
-            $new = true;
-          }
-      }
-      if($new){
-          \Storage::disk('local')->delete('files', $file->file);
-      }
-      $data['file'] = $newImage;
+        $data =  $request->validate($this->rules($request->all()));
+        $new  = false;
+        if ($request->hasFile('file')) {
+            if ($request->file('file')->isValid()) {
+                $newImage = \Storage::disk('local')->put('files', $request->file);
+                $new = true;
+            }
+        }
+        if ($new) {
+            \Storage::disk('local')->delete('files', $file->file);
+        }
+        $data['file'] = $newImage;
 
-      $file->update($data);
-      return  redirect()->route('file.index')->with(['success' => 'File Updated Successfully']);;
-
+        $file->update($data);
+        return  redirect()->route('file.index')->with(['success' => 'File Updated Successfully']);;
     }
 
     /**
@@ -123,13 +129,10 @@ class FileController extends Controller
     protected  function rules($request)
     {
         return  [
-            'unique'  => ['required', 'string',],
-            'user_id' => ['required', 'exists:users,id'],
             'name' => ['required', 'string', 'min:4', 'max:255'],
-            'access' => ['required', 'boolean'],
             'bin' => ['nullable', 'min:4', 'max:255'],
-            'file' => ['file', 'size:50000'],
-            'access_type' => ['required', Rule::in(['global', 'private',  'group'])],
+            'file' => ['mimes:jpeg,png,jpg,svg,doc,docx,odt,pdf,tex,txt,wpd,tiff,tif,csv,psd,key,odp,pps,ppt,pptx,ods,xls,xlsm,xlsx', 'max:50000'],
+            'access_type' => ['required', "in:global,private,group"],
         ];
     }
 }

@@ -7,7 +7,9 @@
 
     {{-- Main Content --}}
     <x-dashboard.main >
-
+     <div class="container-fluid py-4">
+            
+     </div>
     </x-dashboard.main>
  {{-- Footer --}}
 {{-- <x-dashboard.footer /> --}}

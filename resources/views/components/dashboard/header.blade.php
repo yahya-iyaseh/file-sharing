@@ -9,6 +9,7 @@
   <title>
     Material Dashboard 2 by Creative Tim
   </title>
+
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
@@ -18,6 +19,9 @@
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  {{-- summer note --}}
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ asset('dash/assets/css/material-dashboard.css?v=3.0.0') }}" rel="stylesheet" />
   <style>
@@ -35,12 +39,53 @@
 
     #clickImage {
       z-index: 88888 !important;
+      margin-top: -5vh;
+    }
+
+    .note-editable {
+      background: white !important;
+    }
+
+    hr {
+      border: none;
+      /* border: 1px solid #d7d7d7; */
+    }
+
+    .hr {
+      text-align: center;
+    }
+
+    .hr img {
+      position: relative;
+      top: -18px;
+    }
+
+    main hr, hr.d-md-none {
+      background-color: inherit;
+      width: 3%;
+      border-top: 4px dotted #f52e77;
+      margin: 0 auto;
+      opacity: 1;
+    }
+
+    select:focus,
+    .form-select:focus,
+    .note-editable:focus {
+      border-bottom: 3px solid #de2668;
+    }
+
+    input:hover,
+    select:hover,
+    .note-editable:hover {
+      border-bottom: 3px solid #de2668;
+
     }
 
   </style>
 </head>
+{{-- dark-version --}}
 
-<body class="g-sidenav-show dark-version bg-gray-200">
+<body class="g-sidenav-show bg-gray-200">
   <div id="clickDiv" class="d-none">
-<img src="{{ asset('images/click.png') }}" id="clickImage" alt="Click" width="400" >
-</div>
+    <img src="{{ asset('images/click.png') }}" id="clickImage" alt="Click" width="400">
+  </div>

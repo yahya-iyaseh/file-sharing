@@ -20,6 +20,7 @@ class CreateFilesTable extends Migration
             ->constrained('users')
             ->cascadeOnDelete();
             $table->string('name');
+            $table->longText('description')->nullable();
             $table->string('file');
             $table->boolean('access')->default(true);
             $table->string('bin')->nullable();

@@ -12,7 +12,7 @@
                 @csrf
                 @method('PUT')
 
-                <x-dashboard._form title="Update" :file="$file" :accessType="$accessType" />
+                <x-dashboard._form title="Update" :file="$file" :accessType="$accessType" :date="$date" />
 
             </form>
         </div>

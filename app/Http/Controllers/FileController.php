@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\File;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,7 +25,7 @@ class FileController extends Controller
     {
         $user = \Auth::user();
 
-        return view('file.index', ['files' => $user->files()->latest()->paginate(8)]);
+        return view('file.index', ['files' => $user->files()->latest()->paginate(5)]);
     }
 
     /**
@@ -35,7 +36,10 @@ class FileController extends Controller
     public function create()
     {
         $file  = new File;
-        return view('file.create', ['accessType' =>  File::accessType(), 'file' => $file]);
+        return view('file.create', [
+            'accessType' =>  File::accessType(),
+            'file' => $file,
+        ]);
     }
 
     /**
@@ -46,15 +50,17 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-
+        // dd($request->all());
         $request->validate($this->rules($request->all()));
         $data = $request->all();
-        $data['file'] = $request->file('file')->store('local/files');
+        $data['file'] = Storage::putFile('files', $request->file('file'));
         if ($data['access']) {
             $data['access'] = true;
         } else {
             $data['access'] = false;
         }
+
+        $data['bin'] = bcrypt($request->bin);
         $data['user_id'] = \Auth::id();
         $data['unique'] = Str::uuid();
         File::create($data);
@@ -80,8 +86,10 @@ class FileController extends Controller
      */
     public function edit(File $file)
     {
+
         return view('file.edit', [
             'file' => $file,
+            'date' => $this->getDate($file->expired_date),
             'accessType' => File::accessType(),
         ]);
     }
@@ -96,12 +104,13 @@ class FileController extends Controller
     public function update(Request $request, File $file)
     {
         // dd($request->all());
-          $request->validate($this->rules($request->all()));
+        $request->validate($this->rules($request->all()));
         $data = $request->all();
         $new  = false;
         if ($request->hasFile('file')) {
             if ($request->file('file')->isValid()) {
-                $newImage = \Storage::disk('local')->put('files', $request->file);
+                $newImage = Storage::putFile('files', $request->file('file'));
+                // $newImage = $request->file('file')->disk('local')->store('files');
                 $new = true;
             }
         }
@@ -109,12 +118,14 @@ class FileController extends Controller
             \Storage::disk('local')->delete('files', $file->file);
             $data['file'] = $newImage;
         }
-        if(isset($request->access)){
+        if (isset($request->access)) {
             $data['access'] = true;
-        }else{
+        } else {
             $data['access'] = false;
         }
-
+        if (isset($request->bin)) {
+            $data['bin'] = bcrypt($request->bin);
+        }
         $file->update($data);
         return  redirect()->route('file.index')->with(['success' => 'File Updated Successfully']);;
     }
@@ -138,8 +149,14 @@ class FileController extends Controller
         return  [
             'name' => ['required', 'string', 'min:4', 'max:255'],
             'bin' => ['nullable', 'min:4', 'max:255'],
+            'expired_date' => ['nullable', 'date'],
             'file' => ['mimes:jpeg,png,jpg,svg,doc,docx,odt,pdf,tex,txt,wpd,tiff,tif,csv,psd,key,odp,pps,ppt,pptx,ods,xls,xlsm,xlsx', 'max:50000'],
             'access_type' => ['required', "in:global,private,group"],
         ];
+    }
+
+    public function getDate($value)
+    {
+        return Carbon::parse($value)->format('Y-m-d\TH:i');
     }
 }

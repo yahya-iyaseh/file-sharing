@@ -17,14 +17,17 @@ class CreateFilesTable extends Migration
             $table->id();
             $table->string('unique')->unique();
             $table->foreignId('user_id')
-            ->constrained('users')
-            ->cascadeOnDelete();
+                ->constrained('users')
+                ->cascadeOnDelete();
             $table->string('name');
             $table->longText('description')->nullable();
+            $table->unsignedBigInteger('visitors')->default(0);
+            $table->unsignedBigInteger('downloads')->default(0);
             $table->string('file');
+            $table->dateTimeTz('expired_date')->nullable();
             $table->boolean('access')->default(true);
             $table->string('bin')->nullable();
-            $table->enum('access_type' , ['private', 'global', 'group']);
+            $table->enum('access_type', ['private', 'global', 'group']);
             $table->timestamps();
         });
     }

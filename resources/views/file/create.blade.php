@@ -12,7 +12,7 @@
             @csrf
             @method('POST')
 
-            <x-dashboard._form title="Save" :file="$file" :accessType="$accessType" />
+            <x-dashboard._form title="Save" :file="$file" :accessType="$accessType" :date="null" />
 
         </form>
     </div>

@@ -25,6 +25,8 @@
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ asset('dash/assets/css/material-dashboard.css?v=3.0.0') }}" rel="stylesheet" />
   <style>
+    
+
     #clickDiv {
       position: absolute;
       width: 100vw;
@@ -59,7 +61,8 @@
       top: -18px;
     }
 
-    main hr, hr.d-md-none {
+    form hr,
+    hr.d-md-none {
       background-color: inherit;
       width: 2%;
       border-top: 6px dotted #f52e77;
@@ -78,6 +81,12 @@
     .note-editable:hover {
       border-bottom: 3px solid #de2668;
 
+    }
+
+    @media(min-width: 768px) {
+      .table-responsive {
+        overflow: hidden;
+      }
     }
 
   </style>

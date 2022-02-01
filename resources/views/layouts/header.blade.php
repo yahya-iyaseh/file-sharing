@@ -32,7 +32,7 @@
               @else
               <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="{{ route('login') }}" style="padding: 10px 20px;">Login</a>
                 @if (Route::has('register'))
-              <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="{{ route('register') }}" style="padding: 10px 20px;">Register</a>
+              <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="{{ route('register') }}" style="padding: 10px 20px;">Sign Up</a>
 
             @endif
             @endif
@@ -57,7 +57,7 @@
                   @else
                   <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="{{ route('login') }}" style="padding: 10px 20px;">Login</a>
                     @if (Route::has('register'))
-                  <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="{{ route('register') }}" style="padding: 10px 20px;">Register</a>
+                  <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="{{ route('register') }}" style="padding: 10px 20px;">Sign Up</a>
 
                 @endif
                 @endif

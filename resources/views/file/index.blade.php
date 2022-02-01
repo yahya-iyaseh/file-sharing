@@ -22,8 +22,9 @@
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                   File Name
                 </th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                  Description
+
+                <th>
+                  URL
                 </th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                   Access Type
@@ -31,18 +32,25 @@
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                   Access
                 </th>
-                <th class="text-secondary opacity-7">Action</th>
+                <th class="text-secondary opacity-7 text-center">Actions</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($files as $file)
                 <tr>
                   <td>
-                    <h6 class="mb-0 text-sm">{{ $file->name }}</h6>
-
+                    <a href="{{ route('file.show', $file->id) }}">
+                      <h6 class="mb-0 ms-3">{{ $file->name }}</h6>
+                    </a>
                   </td>
                   <td>
-                    <p class="text-xs font-weight-bold mb-0">{!! $file->description !!}</p>
+                    <button class="btn" value="{{ url('/') .'/' . $file->unique }}"  onClick="navigator.clipboard.writeText(this.value)">
+                        Copy URL
+                      <span class="material-icons">
+                        content_copy
+                      </span>
+                    </button>
+
                   </td>
                   <td class="align-middle text-center text-sm">
                     @if ($file->access_type == 'private')
@@ -60,12 +68,22 @@
                   </td>
 
                   <td class="align-middle">
-                    <div class="text-center">
-                      <a href="{{ route('file.edit', $file->id) }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                        <span class="material-icons" style="color: #de2668">
-                          mode_edit
-                        </span>
-                      </a>
+                    <div class="text-center row">
+                      <div class="col-md-6"> <a href="{{ route('file.edit', $file->id) }}" class="btn btn-sm btn-outline-info" data-toggle="tooltip" data-original-title="Edit user">
+                          <span class="material-icons color-info">
+                            mode_edit
+                          </span>
+                        </a></div>
+                      <div class="col-md-6">
+                        <form action="{{ route('file.destroy', $file->id) }}" method="post" onsubmit="return confirm('Are you Sure you Want to Delete the file?')">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="btn btn-outline-danger btn-sm"><span class="material-icons">
+                              delete
+                            </span></button>
+                        </form>
+                      </div>
+
                     </div>
                   </td>
                 </tr>
@@ -75,9 +93,15 @@
           </table>
         </div>
       </div>
+      <div class="d-flex justify-content-end m-5">
+        {{ $files->links() }}
+
+      </div>
+
 
     </div>
   </div>
+
 </x-dashboard.main>
 {{-- Footer --}}
 {{-- <x-dashboard.footer /> --}}

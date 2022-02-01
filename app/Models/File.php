@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class File extends Model
 {
     use HasFactory;
-    protected $fillable = ['unique', 'name', 'type', 'bin', 'access', 'access_type', 'file', 'description', 'user_id'];
+    protected $fillable = ['unique', 'name', 'type', 'bin', 'access', 'access_type', 'file', 'description', 'user_id', 'expired_date'];
     protected $with = [];
     public function user()
     {

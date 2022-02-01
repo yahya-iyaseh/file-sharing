@@ -17,6 +17,14 @@
   <meta name="theme-color" content="#478ac9">
   <meta property="og:title" content="Page 1">
   <meta property="og:type" content="website">
+  <style>
+      .text-primary-two{
+          color: #de2669c4 !important
+      }
+      .bg-primary-two{
+          background-color: #de2669 !important
+      }
+  </style>
 </head>
 
 <body data-home-page="Page-1.html" data-home-page-title="Page 1" class="u-body">
@@ -59,7 +67,7 @@
                     </div>Sample.
                   </li>
                 </ul>
-                <a href="{{ route('register') }}" class="u-active-grey-80 u-border-none u-btn u-btn-round u-button-style u-hover-grey-80 u-palette-1-base u-radius-10 u-btn-1">Register</a>
+                <a href="{{ route('register') }}" class="u-active-grey-80 u-border-none u-btn u-btn-round u-button-style u-hover-grey-80 u-palette-1-base u-radius-10 u-btn-1">Sign Up</a>
               </div>
             </div>
             <div class="u-bottom-right-radius-10 u-container-style u-image u-layout-cell u-shape-round u-size-30 u-top-right-radius-10 u-image-1" data-image-width="150" data-image-height="103">
@@ -73,7 +81,7 @@
   <section class="u-align-center u-clearfix u-section-2" id="carousel_2028">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
       <h1 class="u-text u-text-default u-text-palette-1-base u-text-1">Quick &amp; Easy Process</h1>
-      <h3 class="u-custom-font u-text u-text-2">Do not bother yourself with your Files, Upload them now.<br>Share them with your frineds, co-worker, or concerned persons.<br>Any Time &amp; AnyWhere.
+      <h3 class="u-custom-font u-text u-text-2" style="color: #de2669c4;">Do not bother yourself with your Files, Upload them now.<br>Share them with your frineds, co-worker, or concerned persons.<br>Any Time &amp; AnyWhere.
       </h3>
     </div>
   </section>
@@ -87,7 +95,7 @@
           <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-1">
             <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
               <img src="{{ asset('pageHome/images/users-with-speech-bubbles-vector_53876-822501.jpg') }}" alt="" class="u-expanded-width u-image u-image-contain u-image-default u-image-1" data-image-width="626" data-image-height="625">
-              <h4 class="u-text u-text-default u-text-palette-1-base u-text-3">Sharing Files</h4>
+              <h4 class="u-text u-text-default u-text-palette-1-base text-primary-two u-text-3">Sharing Files</h4>
               <p class="u-text u-text-palette-1-dark-2 u-text-4"> Share Any Thing any Time.</p>
               {{-- <a href="https://nicepage.com/c/grid-website-templates" class="u-active-grey-80 u-border-active-white u-border-hover-white u-btn u-btn-round u-button-style u-hover-grey-80 u-palette-1-base u-radius-10 u-btn-1" target="_blank">more</a> --}}
             </div>
@@ -95,7 +103,7 @@
           <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-video-cover u-white u-list-item-2">
             <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2">
               <img src="{{ asset('/images/two.jpg') }}" alt="" class="u-expanded-width u-image u-image-default u-image-2" data-image-width="626" data-image-height="625">
-              <h4 class="u-text u-text-default u-text-palette-1-base u-text-5">Manage your Files</h4>
+              <h4 class="u-text u-text-default u-text-palette-1-base text-primary-two u-text-5">Manage your Files</h4>
               <p class="u-text u-text-palette-1-dark-2 u-text-6"> Upload, Download, Edit and Delete,  get  a full control in your  Files.</p>
               {{-- <a href="https://nicepage.com/website-design" class="u-active-grey-80 u-border-active-white u-border-hover-white u-btn u-btn-round u-button-style u-hover-grey-80 u-palette-1-base u-radius-10 u-btn-2" target="_blank">More</a> --}}
             </div>
@@ -103,7 +111,7 @@
           <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-video-cover u-white u-list-item-3">
             <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3">
               <img src="{{ asset('images/one.jpg') }}" alt="" class="u-expanded-width u-image u-image-contain u-image-default u-image-3" data-image-width="626" data-image-height="626">
-              <h4 class="u-text u-text-default u-text-palette-1-base u-text-7">Share And Download Files With others</h4>
+              <h4 class="u-text u-text-default u-text-palette-1-base text-primary-two u-text-7">Share And Download Files With others</h4>
               <p class="u-text u-text-palette-1-dark-2 u-text-8"> In full control  to share with  others with the ability to set password or timeperiod settings.</p>
               {{-- <a href="https://nicepage.com/k/announcement-html-templates" class="u-active-grey-80 u-border-active-white u-border-hover-white u-btn u-btn-round u-button-style u-hover-grey-80 u-palette-1-base u-radius-10 u-btn-3" --}}
                 {{-- target="_blank">more</a> --}}
@@ -150,7 +158,7 @@
                   </svg>
                 </span>
                 <h3 class="u-custom-font u-font-pt-sans u-text u-text-palette-1-base u-text-4">Even the simplest needs can be simpler with coding.</h3>
-                <a href="https://www.linkedin.com/in/yahya-iyaseh-6181a8220/" class="u-active-palette-1-dark-3 u-btn u-btn-round u-button-style u-hover-palette-1-dark-3 u-radius-6 u-btn-2"><span class="u-icon u-icon-2"><svg class="u-svg-content"
+                <a href="https://www.linkedin.com/in/yahya-iyaseh-6181a8220/" class="u-active-palette-1-dark-3 u-btn bg-primary-two u-btn-round u-button-style u-hover-palette-1-dark-3 u-radius-6 u-btn-2"><span class="u-icon u-icon-2"><svg class="u-svg-content"
                       viewBox="0 0 512 512" style="width: 1em; height: 1em;">
                       <path
                         d="m256 0c-141.363281 0-256 114.636719-256 256s114.636719 256 256 256 256-114.636719 256-256-114.636719-256-256-256zm-74.390625 387h-62.347656v-187.574219h62.347656zm-31.171875-213.1875h-.40625c-20.921875 0-34.453125-14.402344-34.453125-32.402344 0-18.40625 13.945313-32.410156 35.273437-32.410156 21.328126 0 34.453126 14.003906 34.859376 32.410156 0 18-13.53125 32.402344-35.273438 32.402344zm255.984375 213.1875h-62.339844v-100.347656c0-25.21875-9.027343-42.417969-31.585937-42.417969-17.222656 0-27.480469 11.601563-31.988282 22.800781-1.648437 4.007813-2.050781 9.609375-2.050781 15.214844v104.75h-62.34375s.816407-169.976562 0-187.574219h62.34375v26.558594c8.285157-12.78125 23.109375-30.960937 56.1875-30.960937 41.019531 0 71.777344 26.808593 71.777344 84.421874zm0 0">
@@ -197,7 +205,7 @@
                       </g>
                     </g>
                   </g>
-                </svg><img></span> &nbsp;&nbsp;Register&nbsp;&nbsp;<br>
+                </svg><img></span> &nbsp;&nbsp;Sign Up&nbsp;&nbsp;<br>
             </a>
           </div>
         </div>

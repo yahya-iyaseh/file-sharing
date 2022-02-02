@@ -24,7 +24,7 @@
           </li>
           @if (Route::has('login'))
             @auth
-              <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="{{ url('/dashboard') }}" style="padding: 10px 20px;">Dashboard</a>
+              <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="{{ url('/file') }}" style="padding: 10px 20px;">Dashboard</a>
 
               <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="{{ route('logout') }}" style="padding: 10px 20px;"
                   onclick="event.preventDefault(); document.getElementById('formlogout').submit();">Logout</a>

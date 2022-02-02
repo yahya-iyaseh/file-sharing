@@ -19,6 +19,7 @@
           <table class="table align-items-center mb-0">
             <thead>
               <tr>
+                  {{-- <td>Image</td> --}}
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                   File Name
                 </th>
@@ -38,6 +39,9 @@
             <tbody>
               @foreach ($files as $file)
                 <tr>
+                    {{-- <td>
+                        <img src="{{ Storage::url($file->file) }}" alt="" width="100">
+                    </td> --}}
                   <td>
                     <a href="{{ route('file.show', $file->id) }}">
                       <h6 class="mb-0 ms-3">{{ $file->name }}</h6>

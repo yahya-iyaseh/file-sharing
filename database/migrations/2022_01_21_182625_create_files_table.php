@@ -21,7 +21,8 @@ class CreateFilesTable extends Migration
                 ->cascadeOnDelete();
             $table->string('name');
             $table->longText('description')->nullable();
-            $table->unsignedBigInteger('visitors')->default(0);
+            $table->unsignedBigInteger('success_visit')->default(0);
+            $table->unsignedBigInteger('failed_visit')->default(0);
             $table->unsignedBigInteger('downloads')->default(0);
             $table->string('file');
             $table->dateTimeTz('expired_date')->nullable();

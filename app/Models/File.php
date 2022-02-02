@@ -15,6 +15,11 @@ class File extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getSizeAttribute()
+    {
+        return  number_format(\Storage::size($this->file) / 1024, 2) . ' MB';
+    }
     public static function accessType()
     {
         return [

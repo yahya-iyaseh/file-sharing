@@ -35,7 +35,7 @@
 <hr>
 <div class="input-group input-group-dynamic mb-4">
   <span class="input-group-text" id="basic-addon1">BIN Code</span>
-  <input type="text" name="bin" class="form-control @error('bin') is-invalid @enderror" placeholder="BIN Code" aria-label="BIN Code" aria-describedby="basic-addon1" value="{{ old('bin', $file->bin) }}">
+  <input type="password" name="bin" class="form-control @error('bin') is-invalid @enderror" placeholder="BIN Code" aria-label="BIN Code" aria-describedby="basic-addon1">
   @error('bin') <span class="d-block invalid-feedback">{{ $message }}</span> @enderror
 </div>
 <hr>

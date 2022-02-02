@@ -53,14 +53,15 @@ class FileController extends Controller
         // dd($request->all());
         $request->validate($this->rules($request->all()));
         $data = $request->all();
-        $data['file'] = Storage::putFile('files', $request->file('file'));
-        if ($data['access']) {
+        $data['file'] = $request->file('file')->store('files');
+        if (isset($data['access'])) {
             $data['access'] = true;
         } else {
             $data['access'] = false;
         }
-
-        $data['bin'] = bcrypt($request->bin);
+        if (isset($request->bin)) {
+            $data['bin'] = bcrypt($request->bin);
+        }
         $data['user_id'] = \Auth::id();
         $data['unique'] = Str::uuid();
         File::create($data);
@@ -75,7 +76,11 @@ class FileController extends Controller
      */
     public function show(File $file)
     {
-        return view('file.show', compact('file'));
+        $fileInfo = pathinfo(Storage::url($file->file));
+
+        $extension = $fileInfo['extension'];
+
+        return view('file.show', compact('file', 'extension'));
     }
 
     /**
@@ -109,7 +114,8 @@ class FileController extends Controller
         $new  = false;
         if ($request->hasFile('file')) {
             if ($request->file('file')->isValid()) {
-                $newImage = Storage::putFile('files', $request->file('file'));
+                $newImage = $request->file('file')->store('files');
+                // $newImage = Storage::putFile('files', $request->file('file'));
                 // $newImage = $request->file('file')->disk('local')->store('files');
                 $new = true;
             }
@@ -118,6 +124,7 @@ class FileController extends Controller
             \Storage::disk('local')->delete('files', $file->file);
             $data['file'] = $newImage;
         }
+
         if (isset($request->access)) {
             $data['access'] = true;
         } else {
@@ -157,6 +164,10 @@ class FileController extends Controller
 
     public function getDate($value)
     {
-        return Carbon::parse($value)->format('Y-m-d\TH:i');
+        if ($value) {
+            return Carbon::parse($value)->format('Y-m-d\TH:i');
+        } else {
+            return null;
+        }
     }
 }

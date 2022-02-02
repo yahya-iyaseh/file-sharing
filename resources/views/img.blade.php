@@ -10,6 +10,7 @@
 
 <body>
   <img src="{{ \Storage::disk('local')->url($file) }}" alt="">
+  <img src="{{ $filePath }}" alt="">
 </body>
 
 </html>

@@ -44,14 +44,21 @@ body {
   font-size: 2rem;
   margin: 1.5rem 0 3rem;
 }
+
+#back{
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    color: white
+}
+#back:hover{
+    color: var(--color-theme)
+}
 svg.keyhole {
   height: 82px;
   width: 82px;
   opacity: 0;
   visibility: hidden;
-  /* define an animation for the keyhole, to introduce it
-  paused by default, run with a timeout in JavaScript
-  */
   animation: showKey 0.5s 0.5s paused ease-out forwards;
 }
 svg.key {
@@ -60,23 +67,17 @@ svg.key {
   position: absolute;
   opacity: 0;
   visibility: hidden;
-  /* define an animation for the keyhole, to introduce it
-  paused by default, run with a timeout in JavaScript
-  */
   animation: showKey 0.5s 0.5s paused ease-out forwards;
 }
 .ghost {
-  /* border: 1px solid tomato; */
   position: absolute;
   bottom: 5px;
   left: calc(50% - 100px);
   width: 200px;
   height: 200px;
-  /* have the ghost move to the right and to the left of the screen, turning to its central position and repeating the animation twice */
   animation: hoverGhost calc(var(--animation-duration)/2) ease-in-out 2;
 
 }
-/* introduce text through a pseudo element, connected to the animated div */
 .ghost:before {
   content: var(--animation-sentence);
   color: var(--color-theme);
@@ -88,11 +89,6 @@ svg.key {
   padding: 1rem;
   visibility: hidden;
   opacity: 0;
-  /* have each string of text introduced as the ghost returns from the right edge of the screen, and for the length of time it takes to cover the central portion (a fourth, which becomes an eight as the animation length is half the total duration) */
-  /* the delay for an hypothetical duration of 40s is 7.5s for the first, 27.5s for the second and finally 40s for the last
-  in fractions and with a bit of math it boils down to 3/16, 27/40 and 1
-  // ! remember to include a slight delay in the animation of the key and keyhole
-  */
   animation:
     showText calc(var(--animation-duration)/8) calc(var(--animation-duration)*3/16) ease-out forwards,
     showNewText calc(var(--animation-duration)/8) calc(var(--animation-duration)*27/40) ease-out forwards,
@@ -100,11 +96,6 @@ svg.key {
 
 }
 
-/* define the keyframe animations
-- hoverghost to have the ghost move right, left and then back to its default position
-- showKey to introduce into view the key (and keyhole) svg
-- showText, showNewText, showFinalText to show the different strings (the implementation is quite quirky and primed for optimization)
- */
 @keyframes hoverGhost {
   25% {
     transform: translateX(20vw);
@@ -178,6 +169,8 @@ svg.key {
 }
 </style>
 <body>
+    {{-- Back button --}}
+    <a href="{{ url()->previous() }}" id="back">return Back</a>
 <!-- include the svg assets later used in the project -->
 <svg style="display: none;">
   <symbol id="keyhole" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 26.458333 26.458334"><g transform="translate(0 -270.542)"><circle cx="13.229" cy="279.141" r="8.599" fill="#f1eedb" paint-order="stroke fill markers"/><path d="M10.516 283.271h5.427c1.164 0 1.768.861 2.102 1.802l3.59 10.125c.334.94-.937 1.802-2.102 1.802H6.926c-1.165 0-2.437-.861-2.103-1.802l3.59-10.125c.334-.94.938-1.802 2.103-1.802z" fill="#f1eedb" paint-order="stroke fill markers"/><circle r="6.06" cy="279.141" cx="13.229" fill="#282b24" paint-order="stroke fill markers"/><path d="M11.502 283.76h3.455c.741 0 1.126.733 1.338 1.534l2.286 8.614c.213.8-.597 1.534-1.338 1.534H9.216c-.742 0-1.551-.733-1.339-1.534l2.286-8.614c.212-.8.597-1.534 1.339-1.534z" fill="#282b24" paint-order="stroke fill markers"/></g></symbol>

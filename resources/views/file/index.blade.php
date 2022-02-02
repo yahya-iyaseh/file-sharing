@@ -48,7 +48,10 @@
                     </td> --}}
                     <td>
                       <a href="{{ route('file.show', $file->id) }}">
-                        <h6 class="mb-0 ms-3">{{ $file->name }}</h6>
+                        <h6 class="mb-0 ms-3 d-flex align-items-center" >{{ $file->name }} &nbsp;<span class="material-icons text-info" >
+                          visibility
+                        </span></h6>
+
                       </a>
                     </td>
                     <td>
@@ -105,11 +108,11 @@
           </table>
 
           @if ($files->count() == 0)
-          <div class="text-center">
+            <div class="text-center">
 
-            <h3>ooopS You don't Upload any Files Yet, 🤨</h3>
-            <a href="{{ route('file.create') }}" class="btn text-light btn-primary font-weight-bold">Upload Now.</a>
-          </div>
+              <h3>ooopS You don't Upload any Files Yet, 🤨</h3>
+              <a href="{{ route('file.create') }}" class="btn text-light btn-primary font-weight-bold">Upload Now.</a>
+            </div>
           @endif
         </div>
       </div>

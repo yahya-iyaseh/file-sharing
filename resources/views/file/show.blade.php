@@ -23,7 +23,7 @@
           </div>
           <hr class="dark horizontal my-0">
           <div class='hr'>
-            <img src="{{ asset('images/hr-2.png') }}" alt='' width="100%">
+            <img src="{{ asset('images/hr.png') }}" alt='' width="100%">
           </div>
         </div>
       </div>
@@ -59,7 +59,7 @@
           </div>
           <hr class="dark horizontal my-0">
           <div class='hr'>
-            <img src="{{ asset('images/hr-2.png') }}" alt='' width="100%">
+            <img src="{{ asset('images/hr.png') }}" alt='' width="100%">
           </div>
         </div>
       </div>

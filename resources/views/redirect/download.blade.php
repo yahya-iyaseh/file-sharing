@@ -16,7 +16,9 @@
 
 
         </div>
-        <div class="text-center"><button type="submit" class="font-weight-bold btn btn-primary cursor px-5">Download</button></div>
+        <div class="text-center"><button type="submit" class="font-weight-bold btn btn-primary cursor px-5"><span class="me-2"> Download</span><span class="ms-2 material-icons">
+file_download
+</span></button></div>
         <p class="mt-4 text-sm text-center">
           Want to Upload your Files?
           <a href="{{ route('login') }}" class="text-info text-gradient font-weight-bold">Join Us</a>

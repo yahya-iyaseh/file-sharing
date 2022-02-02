@@ -15,7 +15,7 @@
   --color-bg: #282B24;
 
   --animation-sentence: 'You know you\'re supposed to leave, right?';
-  --animation-duration: 40s;
+  --animation-duration: 25s;
 }
 * {
   box-sizing: border-box;
@@ -93,7 +93,6 @@ svg.key {
     showText calc(var(--animation-duration)/8) calc(var(--animation-duration)*3/16) ease-out forwards,
     showNewText calc(var(--animation-duration)/8) calc(var(--animation-duration)*27/40) ease-out forwards,
     showFinalText calc(var(--animation-duration)/8) var(--animation-duration) ease-out forwards;
-
 }
 
 @keyframes hoverGhost {

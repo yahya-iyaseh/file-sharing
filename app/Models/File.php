@@ -25,7 +25,7 @@ class File extends Model
         return [
             'private' => 'Private',
             'global' => 'Global',
-            // 'group' => 'Group'
+            'group' => 'Group'
         ];
     }
 }

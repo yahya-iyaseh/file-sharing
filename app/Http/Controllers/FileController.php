@@ -65,7 +65,8 @@ class FileController extends Controller
         $data['user_id'] = \Auth::id();
         $data['unique'] = Str::uuid();
         File::create($data);
-        return redirect()->route('file.index')->with(['success' => 'The File Was Uploded']);
+        notify()->success('File Upload', 'File Uploaded Successfully');
+        return redirect()->route('file.index');
     }
 
     /**
@@ -76,7 +77,7 @@ class FileController extends Controller
      */
     public function show(File $file)
     {
-        $fileInfo = pathinfo(Storage::url($file->file));
+        $fileInfo = pathinfo(Storage::disk('private')->url($file->file));
 
         $extension = $fileInfo['extension'];
 
@@ -121,7 +122,7 @@ class FileController extends Controller
             }
         }
         if ($new) {
-            \Storage::disk('local')->delete('files', $file->file);
+            \Storage::disk('private')->delete('files', $file->file);
             $data['file'] = $newImage;
         }
 
@@ -134,6 +135,7 @@ class FileController extends Controller
             $data['bin'] = bcrypt($request->bin);
         }
         $file->update($data);
+        notify()->success('Update File', 'File updated successfully');
         return  redirect()->route('file.index')->with(['success' => 'File Updated Successfully']);;
     }
 
@@ -145,7 +147,7 @@ class FileController extends Controller
      */
     public function destroy(File $file)
     {
-        \Storage::disk('local')->delete($file->file);
+        \Storage::disk('private')->delete($file->file);
         $file->delete();
         return  redirect()->route('file.index')->with(['success' => 'File Deleted Successfully']);
     }

@@ -15,18 +15,22 @@
   <!-- Nucleo Icons -->
   <link href="{{ asset('dash/assets/css/nucleo-icons.css" rel="stylesheet') }}" />
   <link href="{{ asset('dash/assets/css/nucleo-svg.css" rel="stylesheet') }}" />
+
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  @notifyCss
   {{-- summer note --}}
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ asset('dash/assets/css/material-dashboard.css?v=3.0.0') }}" rel="stylesheet" />
-  <style>
-    
 
+
+  {{-- Notify Css --}}
+
+  <style>
     #clickDiv {
       position: absolute;
       width: 100vw;
@@ -61,6 +65,10 @@
       top: -18px;
     }
 
+    #side-hr {
+      top: 0
+    }
+
     form hr,
     hr.d-md-none {
       background-color: inherit;
@@ -89,9 +97,14 @@
       }
     }
 
+    .notify {
+      z-index: 9999 !important;
+    }
+
   </style>
 </head>
 {{-- dark-version --}}
+<x:notify-messages />
 
 <body class="g-sidenav-show bg-gray-200">
   <div id="clickDiv" class="d-none">

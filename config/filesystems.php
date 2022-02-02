@@ -35,7 +35,11 @@ return [
             'url' => env('APP_URL') . '/storage',
             'root' => storage_path('app'),
         ],
-
+        'private' =>[
+            'driver' => 'local',
+            'ur' => env('APP_URL'). '/storage',
+            'root' => storage_path('app/private')
+        ],
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

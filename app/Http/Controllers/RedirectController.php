@@ -15,10 +15,15 @@ class RedirectController extends Controller
         $file = File::where('unique', $id)->first();
         // Check File Access: False ? redirect to forbidden : Check Expired Date
         // $file->increment('failed_visit');
+        if(isset($file->access)){
+
+
         if (!$file->access) {
             return view('redirect.forbidden');
+            }
         }
         // Check File Expired Date : true ? redirect to forbidden and update access to false
+        if(isset($file->expired_date)){
         if ($file->expired_date) {
             if ($file->expired_date <= now()) {
                 $file->increment('failed_visit');
@@ -26,6 +31,7 @@ class RedirectController extends Controller
                 return view('redirect.forbidden');
             }
         }
+    }
         if ($file->bin) {
             return redirect()->route('redirect.bin', ['id' => $id]);
         }
@@ -84,7 +90,7 @@ class RedirectController extends Controller
         $fileInfo = pathinfo(Storage::url($file->file));
         $name = $file->name . rand(0, 30) . '.' . $fileInfo['extension'];
         $file->increment('downloads');
-
+        // dd(\Storage::url($file->file));
         return  Storage::download($file->file, $name);
     }
 }

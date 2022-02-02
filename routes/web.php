@@ -49,4 +49,5 @@ Route::prefix('redirect')->name('redirect.')->group(function () {
     Route::post('/file/download/{id}',  [Redirectcontroller::class, 'fileDownload']);
 });
 require __DIR__ . '/auth.php';
+
 Route::get('/{id}', [RedirectController::class, 'redirect'])->name('redirect');

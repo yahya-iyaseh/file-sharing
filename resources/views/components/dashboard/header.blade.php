@@ -22,11 +22,15 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   @notifyCss
   {{-- summer note --}}
-  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('summernote/summernote-lite.css') }}">
 
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ asset('dash/assets/css/material-dashboard.css?v=3.0.0') }}" rel="stylesheet" />
+<!-- include libraries(jQuery, bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
+<!-- include summernote css/js -->
+<script src="{{ asset('summernote/summernote-lite.js') }}"></script>
 
   {{-- Notify Css --}}
 
